@@ -1,0 +1,36 @@
+@tailwind components;
+@tailwind base;
+@tailwind utilities;
+
+.debug {
+  border: 1px solid red;
+}
+.dark {
+  background-color: #001529;
+}
+.hide-scroll::-webkit-scrollbar {
+  display: none;
+}
+.custom-menu .ant-menu-item-selected button {
+  background-color: blue !important;
+  color: white !important;
+  border-bottom: none !important;
+}
+.custom-menu .ant-menu-item-selected::after,
+.custom-menu .ant-menu-item:hover::after {
+  border-bottom: none !important;
+}
+.avatar {
+  background-color: #eff8ff;
+  color: #61b0ff;
+}
+
+.custom .ant-menu-item-selected::after {
+  border-bottom: 2px solid #61b0ff !important;
+}
+
+.card,
+.card button {
+  background-color: #eff8ff;
+  color: #61b0ff;
+}
