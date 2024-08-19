@@ -5,8 +5,6 @@ import { Todo } from "../Modules/Todos";
 
 interface Todos {
   todos: Todo[];
-  customTodo: Todo[];
-  setTodo: React.Dispatch<React.SetStateAction<Todo[]>>;
   setCustomTodo: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
 const AppHeader = ({ todos, setCustomTodo }: Todos) => {

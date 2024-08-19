@@ -2,8 +2,6 @@ import { Button, Card, Flex } from "antd";
 import { Todo } from "../Modules/Todos";
 
 interface Todoss {
-  todos: Todo[];
-  setTodo: React.Dispatch<React.SetStateAction<Todo[]>>;
   customTodo: Todo[];
   setCustomTodo: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
@@ -13,12 +11,8 @@ const Todos = ({ customTodo, setCustomTodo }: Todoss) => {
       return prev.map((item) => {
         return item.id == id
           ? {
-              id: item.id,
+              ...item,
               active: !item.active,
-              body: item.body,
-              time: item.time,
-              title: item.title,
-              type: item.type,
             }
           : item;
       });

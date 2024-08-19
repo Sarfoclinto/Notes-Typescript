@@ -1,16 +1,25 @@
 import { Layout } from "antd";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import AppSidebar from "./Components/AppSidebar";
-import AppHeader from "./Components/AppHeader";
-import AppContent from "./Components/AppContent";
-import { useState } from "react";
-import { Todo } from "./Modules/Todos";
 import Index from "./MainPages/Index";
 import Completed from "./MainPages/Completed";
 import Today from "./MainPages/Today";
 import Trash from "./MainPages/Trash";
 import Upcoming from "./MainPages/Upcoming";
+import EverDo from "./MainPages/EverDo";
+import Todos from "./Pages/Todos";
+import Notes from "./Pages/Notes";
+import Links from "./Pages/Links";
+import Files from "./Pages/Files";
+import { useState } from "react";
+import { Todo } from "./Modules/Todos";
 
+interface Todos {
+  todos: Todo[];
+  customTodo: Todo[];
+  setTodo: React.Dispatch<React.SetStateAction<Todo[]>>;
+  setCustomTodo: React.Dispatch<React.SetStateAction<Todo[]>>;
+}
 const App: React.FC = () => {
   const [todos, setTodo] = useState<Todo[]>([
     {
@@ -50,29 +59,27 @@ const App: React.FC = () => {
           <Layout className="debug">
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="today" element={<Today />} />
+              <Route path="upcoming" element={<Upcoming />} />
+              <Route path="completed" element={<Completed />} />
+              <Route path="trash" element={<Trash />} />
               <Route
                 path="EverDo"
-                element={
-                  <>
-                    <AppHeader
-                      todos={todos}
-                      setTodo={setTodo}
+                element={<EverDo todos={todos} setCustomTodo={setCustomTodo} />}
+              >
+                <Route
+                  index
+                  element={
+                    <Todos
                       customTodo={customTodo}
                       setCustomTodo={setCustomTodo}
                     />
-                    <AppContent
-                      todos={todos}
-                      setTodo={setTodo}
-                      customTodo={customTodo}
-                      setCustomTodo={setCustomTodo}
-                    />
-                  </>
-                }
-              />
-              <Route path="completed" element={<Completed />} />
-              <Route path="today" element={<Today />} />
-              <Route path="trash" element={<Trash />} />
-              <Route path="upcoming" element={<Upcoming />} />
+                  }
+                />
+                <Route path="notes" element={<Notes />} />
+                <Route path="links" element={<Links />} />
+                <Route path="files" element={<Files />} />
+              </Route>
             </Routes>
           </Layout>
         </Layout>
