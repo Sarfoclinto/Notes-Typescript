@@ -56,7 +56,7 @@ const App: React.FC = () => {
       <Router>
         <Layout className="h-dvh">
           <AppSidebar />
-          <Layout className="debug">
+          <Layout>
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="today" element={<Today />} />
