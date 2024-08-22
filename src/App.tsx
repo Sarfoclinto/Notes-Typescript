@@ -11,8 +11,10 @@ import Todos from "./Pages/Todos";
 import Notes from "./Pages/Notes";
 import Links from "./Pages/Links";
 import Files from "./Pages/Files";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Todo } from "./Modules/Todos";
+import { NotesTypes } from "./Modules/Todos";
+import AddNoteModal from "./Components/AddNoteModal";
 
 interface Todos {
   todos: Todo[];
@@ -47,15 +49,32 @@ const App: React.FC = () => {
       body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, inventore.Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, inventore.Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, inventore.",
     },
   ]);
+
+  useEffect(() => {
+    setCustomTodo(() => {
+      return todos.map((item) => item);
+    });
+    console.log(todos);
+  }, [todos]);
+
   const [customTodo, setCustomTodo] = useState<Todo[]>(
     todos.map((item) => item)
   );
 
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+
   return (
     <>
       <Router>
-        <Layout className="h-dvh">
-          <AppSidebar />
+        <Layout>
+          <AppSidebar modalOpen={modalOpen} setModalOpen={setModalOpen} />
+
+          <AddNoteModal
+            modalOpen={modalOpen}
+            setModalOpen={setModalOpen}
+            setTodo={setTodo}
+          />
+
           <Layout>
             <Routes>
               <Route path="/" element={<Index />} />

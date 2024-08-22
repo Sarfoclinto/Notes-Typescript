@@ -6,7 +6,7 @@ interface Todoss {
   setCustomTodo: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
 const Todos = ({ customTodo, setCustomTodo }: Todoss) => {
-  const setActive = (id: number) => {
+  const setActive = (id: number | string) => {
     setCustomTodo((prev) => {
       return prev.map((item) => {
         return item.id == id
@@ -20,14 +20,14 @@ const Todos = ({ customTodo, setCustomTodo }: Todoss) => {
   };
 
   return (
-    <Flex gap={20}>
+    <div className="card-grid w-full my-2 overflow-y-scroll hide-scroll">
       {customTodo.map((item) => {
         return (
           <Card
             onClick={() => {
               setActive(item.id);
             }}
-            className={`w-4/12 cursor-pointer ${
+            className={`w-full cursor-pointer ${
               item.active ? "card" : "bg-gray-100"
             }`}
           >
@@ -48,7 +48,7 @@ const Todos = ({ customTodo, setCustomTodo }: Todoss) => {
           </Card>
         );
       })}
-    </Flex>
+    </div>
   );
 };
 

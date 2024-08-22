@@ -89,7 +89,9 @@ const AppHeader = ({ todos, setCustomTodo }: Todos) => {
               label: (
                 <Link to="/EverDo">
                   <Flex align="center" gap={10}>
-                    <Avatar className="avatar w-6 h-6 font-semibold">10</Avatar>
+                    <Avatar className="avatar w-6 h-6 font-semibold">
+                      {todos.length}
+                    </Avatar>
                     <span className="text-black font-medium">Todos</span>
                   </Flex>
                 </Link>

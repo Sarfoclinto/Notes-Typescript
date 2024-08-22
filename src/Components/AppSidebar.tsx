@@ -156,7 +156,11 @@ const items: MenuItem[] = [
   },
 ];
 
-const AppSidebar = () => {
+type ModalProps = {
+  modalOpen: boolean;
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+const AppSidebar = ({ setModalOpen }: ModalProps) => {
   return (
     <Sider
       theme="light"
@@ -172,7 +176,8 @@ const AppSidebar = () => {
         defaultSelectedKeys={["everdo"]}
       />
       <FloatButton
-        className="absolute left-16 bottom-5"
+        onClick={() => setModalOpen(true)}
+        className="fixed left-16 bottom-5"
         icon={<PlusOutlined />}
         type="primary"
       />
